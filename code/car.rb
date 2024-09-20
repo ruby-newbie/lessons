@@ -2,7 +2,7 @@ class Car
   attr_accessor :name, :transmission
 
   # конструктор
-  def initialize(name, transmission)
+  def initialize(name, transmission = "МКПП")
     # aтрибуты/переменные экземпляра класса/ поля
     @name = name
     @transmission = transmission
@@ -10,19 +10,37 @@ class Car
 
   # метод
   def info
-    "Car: #{@name}\nTransmission: #{@transmission}"
+    "Car: #{@name}\nTransmission: #{@transmission}\nIt's #{opinion}"
   end
 
   # метод
   def info_from_attr_accessors
     "Car: #{name}\nTransmission:#{transmission}"
   end
+
+  private
+
+  def opinion
+    transmission == "МКПП" ? "good" : "bad"
+  end
 end
 
-# создаём экземпляр класса
-car = Car.new("Nissan Terrano", "МКПП")
-puts car.info
+class Honda < Car
+  def info
+    [@name, @transmission, opinion].join("/")
+  end
+end
+
 
 # создаём экземпляр класса
-car2 = Car.new("Kia Soul", "АКПП")
-puts car2.info_from_attr_accessors
+# car = Car.new("Nissan Terrano", "МКПП")
+# puts car.info
+
+# puts "------"
+
+# # создаём экземпляр класса
+# car2 = Car.new("Kia Soul", "АКПП")
+# puts car2.info
+
+car = Honda.new("Civic")
+puts car.info
