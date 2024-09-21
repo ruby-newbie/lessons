@@ -32,4 +32,6 @@ class DuckManager
   attr_reader :ducks
 end
 
-DuckManager.new([Duck.new, Roboduck.new]).test
+ducks = [Duck.new, Roboduck.new]
+manager = DuckManager.new(ducks)
+manager.test
